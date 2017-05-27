@@ -7,6 +7,9 @@ includes
 variables
 {
   // control variables
+  byte  breaks        =0;
+  byte  feuellvl      =100;
+  byte  refeuel       =0;
   byte  oldgear       =0;
   dword oldspeed      =0;
   dword speed         =0;
@@ -22,6 +25,8 @@ variables
   msTimer tEng_Status;
   msTimer tEng_Data;
   
+  timer tfeuel;
+  
 }
 /*Initialization of the Timers for each message for the Engine unit*/
 on start 
@@ -29,14 +34,25 @@ on start
   setTimer(tEng_Status,500);
   setTimer(tEng_Data,200);
   setTimer(tEng_Data,50);
+  setTimer(tfeuel,200);
 }
 
+on timer tfeuel
+{
+  feuellvl--;
+  setTimer(tfeuel,200);
+  if(feuellvl <= 0)
+  {
+    feuellvl = 0;
+  }
+}
 
 on timer tEng_Status
 {
   setTimer(tEng_Status,500);
   output(mEng_Status);
   mEng_Status.Eng_RPM = rpm;
+  mEng_Status.Eng_Fuel_Level = feuellvl;
 }
 
 on timer tEng_Data
@@ -51,6 +67,11 @@ on timer tEng_Data
   //rpm   = speed * acceleration +800;
   mEng_Data.Eng_Acc_Pedal = acceleration;
   mEng_Data.Eng_VehSpeed = speed;
+  
+if(feuellvl !=0)
+{
+if(breaks == 0)
+{
   if ((acceleration == 0)&& (speed == 0))
   {
     rpm = 0;
@@ -69,7 +90,7 @@ on timer tEng_Data
         }
         else
         {
-          speed = 20;
+          speed = 0;
         }
         rpm = rpm + speed + acceleration;
       }
@@ -109,7 +130,7 @@ on timer tEng_Data
       {
         if (speed < (acceleration+50))
         {
-          rpm = 2400;
+          rpm = 2000;
           speed = speed + acceleration;
           if ( speed > 50 )
           {
@@ -118,9 +139,13 @@ on timer tEng_Data
         }
         else
         {
+          if(gear !=0 )
+          {
+            rpm = rpm + speed + acceleration;
+          }
           speed = 50;
         }
-        rpm = rpm + speed + acceleration;
+        
       }
       else
       {
@@ -131,7 +156,10 @@ on timer tEng_Data
         }
         else
         {
-          rpm = 2000;
+          if(acceleration !=0)
+          {
+            rpm = 2000;
+          }
         }
       }
       if(gear < oldgear)
@@ -165,7 +193,10 @@ on timer tEng_Data
           rpm = 2400;
           speed = 75;
         }
-        rpm = rpm + speed + acceleration;
+        if(acceleration !=0 )
+          {
+            rpm = rpm + speed + acceleration;
+          }
         if ( speed > 75 )
           {
             speed = 75;
@@ -218,7 +249,10 @@ on timer tEng_Data
           {
             speed = 100;
           }
-        rpm = rpm + speed + acceleration;
+       if(acceleration !=0 )
+          {
+            rpm = rpm + speed + acceleration;
+          }
       }
       else
       {
@@ -267,7 +301,10 @@ on timer tEng_Data
           {
             speed = 120;
           }
-        rpm = rpm + speed + acceleration;
+       if(gear !=0 )
+          {
+            rpm = rpm + speed + acceleration;
+          }
       }
       else
       {
@@ -316,7 +353,10 @@ on timer tEng_Data
           {
             speed = 150;
           }
-        rpm = rpm + speed + acceleration;
+       if(acceleration !=0 )
+          {
+            rpm = rpm + speed + acceleration;
+          }
       }
       else
       {
@@ -369,7 +409,10 @@ on timer tEng_Data
           {
             speed = 220;
           }
-        rpm = rpm + speed + acceleration;
+       if(acceleration !=0 )
+          {
+            rpm = rpm + speed + acceleration;
+          }
       }
       else
       {
@@ -396,8 +439,18 @@ on timer tEng_Data
       break;
     }
   }
+  if((acceleration == 0)&&(gear == 0))
+  {
+    speed =0;
+  }
 }
-
+else
+{
+  rpm = 0;
+  speed = 0;
+}
+}
+}
    /////////////////////////////////////////////////////////////////////////////////
   ///////////////        ENV VAR EVENTS                    ////////////////////////
  /////////////////////////////////////////////////////////////////////////////////
@@ -411,6 +464,11 @@ on envVar env_Acceleration_Ped
   acceleration = @this;
 }
 
+on envVar env_refeuel
+{
+  feuellvl = 100;
+}
+
 
    /////////////////////////////////////////////////////////////////////////////////
   ///////////////        SIGNAL EVENTS                    ////////////////////////
@@ -418,15 +476,5 @@ on envVar env_Acceleration_Ped
 
 on signal Br_Intensity
 {
-  if (this == 1)
-  {
-  if(speed >= ((acceleration)+ 40 * gear))
-  {
-     speed = speed / 2 - (acceleration + gear );
-     if (speed <10)
-     {
-       speed = 0;
-     }
-  }
-  }
+  breaks = this;
 }
