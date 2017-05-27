@@ -13,7 +13,7 @@
       <Property Name="Location">302, 21</Property>
       <Property Name="NumberIntDigits">4</Property>
       <Property Name="DecimalPlaces">0</Property>
-      <Property Name="SymbolConfiguration">4;1;HTM2017;;;env_Veh_Speed;1;;;-1</Property>
+      <Property Name="SymbolConfiguration">4;2;HTM2017;Engine;Eng_Data;Eng_VehSpeed;1;CAN;;-1</Property>
     </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text 4">
       <Property Name="Name">StaticTextControl4</Property>
@@ -27,7 +27,7 @@
       <Property Name="Location">32, 21</Property>
       <Property Name="NumberIntDigits">8</Property>
       <Property Name="DecimalPlaces">0</Property>
-      <Property Name="SymbolConfiguration">4;1;HTM2017;;;env_RPM;1;;;-1</Property>
+      <Property Name="SymbolConfiguration">4;2;HTM2017;Engine;Eng_Status;Eng_RPM;1;CAN;;-1</Property>
     </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 3">
       <Property Name="Name">StaticTextControl3</Property>
@@ -99,7 +99,7 @@
       <Property Name="Size">24, 24</Property>
       <Property Name="Location">54, 263</Property>
       <Property Name="UsedLEDColorOff">Gray</Property>
-      <Property Name="SymbolConfiguration">4;1;HTM2017;;;enb_LED_Break;1;;;-1</Property>
+      <Property Name="SymbolConfiguration">4;2;HTM2017;Breaks;Br_Status;Br_active;1;CAN;;-1</Property>
       <Property Name="TabIndex">1</Property>
     </Object>
     <Property Name="Name">Panel</Property>

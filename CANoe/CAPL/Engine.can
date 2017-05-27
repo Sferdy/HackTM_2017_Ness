@@ -7,10 +7,14 @@ includes
 variables
 {
   // control variables
-  dword speed        =0;
-  dword rpm          =0;
-  byte  gear         =0;
-  byte  acceleration =0;
+  byte  oldgear       =0;
+  dword oldspeed      =0;
+  dword speed         =0;
+  dword oldrpm        =0;
+  dword rpm           =0;
+  byte  gear          =0;
+  byte  acceleration  =0;
+  byte  oacceleration =0;
   
   message Eng_Status mEng_Status;
   message Eng_Data   mEng_Data;
@@ -18,7 +22,6 @@ variables
   msTimer tEng_Status;
   msTimer tEng_Data;
   
-  msTimer ttimer;
 }
 /*Initialization of the Timers for each message for the Engine unit*/
 on start 
@@ -28,68 +31,402 @@ on start
   setTimer(tEng_Data,50);
 }
 
-on signal Eng_Acc_Pedal
-{
-  acceleration = this;
-}
-
-
-on timer ttimer
-{
-  setTimer(tEng_Data,50);
-  
-  switch (gear)
-  {
-    case (0):
-    {
-      
-      break;
-    }
-    case (1):
-    {
-      break;
-    }
-    case (2):
-    {
-      break;
-    }
-    case (3):{
-      break;
-    }
-    case (4):
-    {
-      break;
-    }
-    case (5):
-    {
-      break;
-    }
-    case (6):
-    {
-      break;
-    }
-    default :
-    {
-      break;
-    }
-  }
-}
 
 on timer tEng_Status
 {
   setTimer(tEng_Status,500);
   output(mEng_Status);
+  mEng_Status.Eng_RPM = rpm;
 }
 
 on timer tEng_Data
 {
+  oldspeed      = 0;
+  oldrpm        = 0;
+  oacceleration = 0;
+  oldgear       = 0;
   setTimer(tEng_Data,200);
   output(mEng_Data);
+  
+  //rpm   = speed * acceleration +800;
+  mEng_Data.Eng_Acc_Pedal = acceleration;
+  mEng_Data.Eng_VehSpeed = speed;
+  if ((acceleration == 0)&& (speed == 0))
+  {
+    rpm = 0;
+  }
+ 
+  switch (gear)
+  {
+    //////////////////////////////
+    case (0):
+    {
+      if (acceleration)
+      {
+        if (speed >= acceleration)
+        {
+          speed = speed - acceleration;
+        }
+        else
+        {
+          speed = 20;
+        }
+        rpm = rpm + speed + acceleration;
+      }
+      else
+      {
+        speed = speed - acceleration;
+        if (rpm >= (speed + acceleration))
+        {
+          rpm = rpm - (speed + acceleration);
+        }
+        else
+        {
+          rpm = 0;
+        }
+      }
+      if(gear < oldgear)
+      {
+        speed = speed - 5;
+        rpm   = rpm - (speed + 800);
+        if (speed < 5)
+        {
+          speed = 0;
+          rpm = 0;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+        
+      break;
+    }
+    /////////////////////////////////////
+    case (1):
+    {
+      if (acceleration)
+      {
+        if (speed < (acceleration+50))
+        {
+          rpm = 2400;
+          speed = speed + acceleration;
+          if ( speed > 50 )
+          {
+            speed = 50;
+          }
+        }
+        else
+        {
+          speed = 50;
+        }
+        rpm = rpm + speed + acceleration;
+      }
+      else
+      {
+        speed = speed - acceleration;
+        if (rpm >= (speed + acceleration+2000))
+        {
+          rpm = rpm - (speed + acceleration);
+        }
+        else
+        {
+          rpm = 2000;
+        }
+      }
+      if(gear < oldgear)
+      {
+        speed = speed - 5;
+        rpm   = rpm - (speed + 800);
+        if (speed < 5)
+        {
+          speed = 0;
+          rpm = 0;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+      break;
+    }
+    /////////////////////////////////////
+    case (2):
+    {
+      if (acceleration)
+      {
+        if (speed < (acceleration+75))
+        {
+          rpm = 2400;
+          speed = speed + acceleration;
+        }
+        else
+        {
+          rpm = 2400;
+          speed = 75;
+        }
+        rpm = rpm + speed + acceleration;
+        if ( speed > 75 )
+          {
+            speed = 75;
+          }
+      }
+      else
+      {
+        speed = speed - acceleration;
+        if (rpm >= (speed + acceleration + 2400))
+        {
+          rpm = rpm - (speed + acceleration);
+        }
+        else
+        {
+          rpm = 2400;
+        }
+      }
+      if(gear < oldgear)
+      {
+        speed = speed - 5;
+        rpm   = rpm - (speed + 800);
+        if (speed < 5)
+        {
+          speed = 0;
+          rpm = 0;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+      break;
+    }
+    /////////////////////////////////////
+    case (3):
+    {
+      if (acceleration)
+      {
+        if (speed < (acceleration+100))
+        {
+          rpm = 2800;
+          speed = speed + acceleration;
+        }
+        else
+        {
+          rpm = 2800;
+          speed = 100;
+        }
+        if ( speed > 100 )
+          {
+            speed = 100;
+          }
+        rpm = rpm + speed + acceleration;
+      }
+      else
+      {
+        speed = speed - acceleration;
+        if (rpm >= (speed + acceleration + 2800))
+        {
+          rpm = rpm - (speed + acceleration);
+        }
+        else
+        {
+          rpm = 2800;
+        }
+      }
+      if(gear < oldgear)
+      {
+        speed = speed - 5;
+        rpm   = rpm - (speed + 800);
+        if (speed < 5)
+        {
+          speed = 0;
+          rpm = 0;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+      break;
+    }
+    /////////////////////////////////////
+    case (4):
+    {
+      if (acceleration)
+      {
+        if (speed < (acceleration + 120))
+        {
+          rpm = 3200;
+          speed = speed + acceleration;
+        }
+        else
+        {
+          rpm = 3200;
+          speed = 120;
+        }
+        if ( speed > 120 )
+          {
+            speed = 120;
+          }
+        rpm = rpm + speed + acceleration;
+      }
+      else
+      {
+        speed = speed - acceleration;
+        if (rpm >= (speed + acceleration +3200))
+        {
+          rpm = rpm - (speed + acceleration);
+        }
+        else
+        {
+          rpm = 3200;
+        }
+      }
+      if(gear < oldgear)
+      {
+        speed = speed - 5;
+        rpm   = rpm - (speed + 800);
+        if (speed < 5)
+        {
+          speed = 0;
+          rpm = 0;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+      break;
+    }
+    /////////////////////////////////////
+    case (5):
+    {
+      if (acceleration)
+      {
+        if (speed < (acceleration + 140))
+        {
+          rpm = 3600;
+          speed = speed + acceleration;
+        }
+        else
+        {
+          rpm = 3600;
+          speed = 150;
+        }
+        if ( speed > 150 )
+          {
+            speed = 150;
+          }
+        rpm = rpm + speed + acceleration;
+      }
+      else
+      {
+        speed = speed - acceleration;
+        if (rpm >= (speed + acceleration + 3600))
+        {
+          rpm = rpm - (speed + acceleration);
+        }
+        else
+        {
+          rpm = 3600;
+        }
+      }
+      if(gear < oldgear)
+      {
+        speed = speed - 5;
+        rpm   = rpm - (speed + 800);
+        if (speed < 5)
+        {
+          speed = 0;
+          rpm = 0;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+      break;
+    }
+    /////////////////////////////////////
+    case (6):
+    {
+      if (acceleration)
+      {
+        if (speed < (acceleration + 200))
+        {
+          rpm = 4000;
+          speed = speed + acceleration;
+          if ( speed > 220 )
+          {
+            speed = 220;
+          }
+        }
+        else
+        {
+          rpm = 6000;
+          speed = 220;
+        }
+        if ( speed > 220 )
+          {
+            speed = 220;
+          }
+        rpm = rpm + speed + acceleration;
+      }
+      else
+      {
+        if (rpm >= (speed + acceleration + 4000))
+        {
+          rpm = rpm + (speed + acceleration);
+        }
+        else
+        {
+          rpm = 4000;
+        }
+      }
+      if(acceleration > 5)
+      {
+        rpm = rpm + 46;
+      }
+      break;
+    }
+    /////////////////////////////////////
+    default :
+    {
+      // must not reach here 
+      // nothing to do here 
+      break;
+    }
+  }
 }
 
-
-
+   /////////////////////////////////////////////////////////////////////////////////
+  ///////////////        ENV VAR EVENTS                    ////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////
 on envVar env_gear
 {
   gear = @this;
+}
+
+on envVar env_Acceleration_Ped
+{
+  acceleration = @this;
+}
+
+
+   /////////////////////////////////////////////////////////////////////////////////
+  ///////////////        SIGNAL EVENTS                    ////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////
+
+on signal Br_Intensity
+{
+  if (this == 1)
+  {
+  if(speed >= ((acceleration)+ 40 * gear))
+  {
+     speed = speed / 2 - (acceleration + gear );
+     if (speed <10)
+     {
+       speed = 0;
+     }
+  }
+  }
 }
