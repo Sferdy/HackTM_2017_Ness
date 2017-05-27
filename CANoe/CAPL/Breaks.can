@@ -1,0 +1,23 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message Br_Status mBr_Status;
+  
+  msTimer tBr_Status;
+}
+/* Initialization of the Break status timer */
+on start
+{
+  setTimer(tBr_Status,300);
+}
+
+on timer tBr_Status
+{
+  setTimer(tBr_Status,300);
+  output(mBr_Status);
+}

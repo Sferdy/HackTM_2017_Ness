@@ -1,0 +1,95 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  // control variables
+  dword speed        =0;
+  dword rpm          =0;
+  byte  gear         =0;
+  byte  acceleration =0;
+  
+  message Eng_Status mEng_Status;
+  message Eng_Data   mEng_Data;
+  
+  msTimer tEng_Status;
+  msTimer tEng_Data;
+  
+  msTimer ttimer;
+}
+/*Initialization of the Timers for each message for the Engine unit*/
+on start 
+{
+  setTimer(tEng_Status,500);
+  setTimer(tEng_Data,200);
+  setTimer(tEng_Data,50);
+}
+
+on signal Eng_Acc_Pedal
+{
+  acceleration = this;
+}
+
+
+on timer ttimer
+{
+  setTimer(tEng_Data,50);
+  
+  switch (gear)
+  {
+    case (0):
+    {
+      
+      break;
+    }
+    case (1):
+    {
+      break;
+    }
+    case (2):
+    {
+      break;
+    }
+    case (3):{
+      break;
+    }
+    case (4):
+    {
+      break;
+    }
+    case (5):
+    {
+      break;
+    }
+    case (6):
+    {
+      break;
+    }
+    default :
+    {
+      break;
+    }
+  }
+}
+
+on timer tEng_Status
+{
+  setTimer(tEng_Status,500);
+  output(mEng_Status);
+}
+
+on timer tEng_Data
+{
+  setTimer(tEng_Data,200);
+  output(mEng_Data);
+}
+
+
+
+on envVar env_gear
+{
+  gear = @this;
+}

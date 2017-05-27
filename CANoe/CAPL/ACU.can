@@ -1,0 +1,32 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message ACU_0 mACU0;
+  message ACU_1 mACU1;
+  
+  msTimer tACU0;
+  msTimer tACU1;
+}
+/*Initialization of the Timers for each message for the ACU unit*/
+on start 
+{
+  setTimer(tACU0,100);
+  setTimer(tACU1,200);
+}
+
+on timer tACU0
+{
+  setTimer(tACU0,100);
+  output(mACU0);
+}
+
+on timer tACU1
+{
+  setTimer(tACU1,200);
+  output(mACU1);
+}

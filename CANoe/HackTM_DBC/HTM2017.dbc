@@ -1,0 +1,81 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Breaks Gateway_Pi Engine ACU
+VAL_TABLE_ vtsig_shiftstick 5 "5th gear" 4 "4th gear" 3 "3rd gear" 2 "2nd gear" 1 "1st gear" 0 "N" ;
+
+
+BO_ 5 Eng_Data: 8 Engine
+ SG_ Eng_VehSpeed : 0|16@1- (1,0) [0|0] ""  ACU,Gateway_Pi
+ SG_ Eng_Acc_Pedal : 16|8@1- (1,0) [0|0] ""  ACU,Breaks,Gateway_Pi
+
+BO_ 3 ACU_1: 8 ACU
+ SG_ ACU_Sidecrash : 8|2@1- (1,0) [0|0] ""  Engine,Gateway_Pi
+ SG_ ACU_Rollover : 0|1@1+ (1,0) [0|0] ""  Engine,Gateway_Pi
+
+BO_ 2 Br_Status: 8 Breaks
+ SG_ Br_Intensity : 8|8@1- (1,0) [0|0] ""  Engine,ACU,Gateway_Pi
+ SG_ Br_active : 0|1@1+ (1,0) [0|0] ""  Engine,ACU,Gateway_Pi
+
+BO_ 1 Eng_Status: 8 Engine
+ SG_ Eng_RPM : 8|24@1- (1,0) [0|0] ""  ACU,Gateway_Pi
+ SG_ Eng_Fuel_Level : 0|8@1- (1,0) [0|0] ""  ACU,Gateway_Pi
+
+BO_ 0 ACU_0: 8 ACU
+ SG_ ACU_RearCrash : 1|1@1- (1,0) [0|0] ""  Engine,Gateway_Pi
+ SG_ ACU_Front_Crash : 0|1@1- (1,0) [0|0] ""  Engine,Gateway_Pi
+
+
+
+EV_ enb_LED_Break: 0 [0|1] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_refeuel: 0 [0|1] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_Fuel_lvl: 0 [0|256] "" 0 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_Veh_Speed: 0 [0|1063] "" 0 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_RPM: 0 [0|16777215] "" 0 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_Breaking_Ped: 0 [0|4] "" 0 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_gear: 0 [0|6] "" 0 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_Acceleration_Ped: 0 [0|6] "" 0 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "BusType" "CAN";
+VAL_ env_gear 5 "5th gear" 4 "4th gear" 3 "3rd gear" 2 "2nd gear" 1 "1st gear" 0 "N" ;
+
