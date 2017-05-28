@@ -21,6 +21,7 @@ on start
 on timer tBr_Status
 {
   setTimer(tBr_Status,300);
+  mBr_Status.Br_Intensity = breaking;
   output(mBr_Status);
 }
 

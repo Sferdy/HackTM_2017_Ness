@@ -70,13 +70,12 @@ on timer tEng_Data
   
 if(feuellvl !=0)
 {
-if(breaks == 0)
-{
+
   if ((acceleration == 0)&& (speed == 0))
   {
     rpm = 0;
   }
- 
+
   switch (gear)
   {
     //////////////////////////////
@@ -120,7 +119,11 @@ if(breaks == 0)
       {
         rpm = rpm + 46;
       }
-        
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
+      }
       break;
     }
     /////////////////////////////////////
@@ -176,6 +179,11 @@ if(breaks == 0)
       {
         rpm = rpm + 46;
       }
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
+      }
       break;
     }
     /////////////////////////////////////
@@ -227,6 +235,11 @@ if(breaks == 0)
       if(acceleration > 5)
       {
         rpm = rpm + 46;
+      }
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
       }
       break;
     }
@@ -280,6 +293,11 @@ if(breaks == 0)
       {
         rpm = rpm + 46;
       }
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
+      }
       break;
     }
     /////////////////////////////////////
@@ -331,6 +349,11 @@ if(breaks == 0)
       if(acceleration > 5)
       {
         rpm = rpm + 46;
+      }
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
       }
       break;
     }
@@ -384,6 +407,11 @@ if(breaks == 0)
       {
         rpm = rpm + 46;
       }
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
+      }
       break;
     }
     /////////////////////////////////////
@@ -429,6 +457,11 @@ if(breaks == 0)
       {
         rpm = rpm + 46;
       }
+      if(breaks != 0)
+      {
+        speed = 0;
+        rpm = 0;
+      }
       break;
     }
     /////////////////////////////////////
@@ -450,7 +483,8 @@ else
   speed = 0;
 }
 }
-}
+
+
    /////////////////////////////////////////////////////////////////////////////////
   ///////////////        ENV VAR EVENTS                    ////////////////////////
  /////////////////////////////////////////////////////////////////////////////////
@@ -477,4 +511,5 @@ on envVar env_refeuel
 on signal Br_Intensity
 {
   breaks = this;
+
 }

@@ -1,21 +1,20 @@
 import SocketServer
+from os.path import dirname, abspath, join
 
-SERV_ADDR = ('localhost', 9999)
-outFileName = './in_stream.asc'
+SERV_ADDR = ('10.1.0.16', 9999)
+outFileName = join(dirname(abspath(__file__)), 'in_stream.asc')
 
 
 class ReqHdl(SocketServer.StreamRequestHandler):
 
     def handle(self):
-        data = self.request.recv(1024)
-        if 'Tx' in data:
-            with open(outFileName, 'w+') as outFile:
-                while data:
-                    self.request.send('OK')
+        with open(outFileName, 'w+') as outFile:
+            data = self.request.recv(1024)
+            while data:
+                print(data)
+                if 'Tx' in data:
                     outFile.write(data)
-                    # spi_data.append(log2spi(data))
-                    # self.request.send('OK')
-                    data = self.request.recv(1024)
+                data = self.request.recv(1024)
 
 def server_run(server_address):
     server = SocketServer.ThreadingTCPServer(
@@ -29,10 +28,13 @@ def server_run(server_address):
     server.request_queue_size = 1
     try:
         server.server_bind()
+        print("Server socket bound to address: ", SERV_ADDR)
         server.server_activate()
+        print("Server socket listening...")
         server.serve_forever()
     finally:
         server.server_close()
+        print("Server closed...")
 
 
 if __name__ == '__main__':
