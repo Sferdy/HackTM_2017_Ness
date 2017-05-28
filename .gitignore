@@ -2,4 +2,4 @@
 **/.idea/
 
 # ignore virtual environment
-**/venv/
+**/venv*/
