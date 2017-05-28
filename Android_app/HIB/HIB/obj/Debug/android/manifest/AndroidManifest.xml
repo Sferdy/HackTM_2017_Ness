@@ -4,8 +4,9 @@
   <uses-sdk android:minSdkVersion="16" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="HIB" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
-    <activity android:icon="@drawable/icon" android:label="HIB" android:name="md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity">
+  <application android:label="HIB" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="Activity1" android:name="md5f24e4e9092dcdb043b2e44f68b4927a5.Activity1" />
+    <activity android:icon="@drawable/icon" android:label="HIB Application" android:name="md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

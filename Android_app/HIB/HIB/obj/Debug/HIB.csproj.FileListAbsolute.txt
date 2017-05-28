@@ -13,3 +13,4 @@ C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\R.cs.flag
 C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\uploadflags.txt
 C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\bin\Debug\HIB.dll.mdb
 C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\android\assets\HIB.dll.mdb
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\res\layout\second.xml

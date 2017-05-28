@@ -1,3 +1,7 @@
+HIB.Activity1, HIB;md5f24e4e9092dcdb043b2e44f68b4927a5.Activity1
+HIB.Activity1, HIB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5f24e4e9092dcdb043b2e44f68b4927a5.Activity1
+HIB.Activity1;md5f24e4e9092dcdb043b2e44f68b4927a5.Activity1
+hib.Activity1;md5f24e4e9092dcdb043b2e44f68b4927a5.Activity1
 HIB.MainActivity, HIB;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity
 HIB.MainActivity, HIB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity
 HIB.MainActivity;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity

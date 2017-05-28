@@ -7,10 +7,11 @@ using System.Net;
 using System.IO;
 using System;
 using Android.Graphics;
+using Android.Content;
 
 namespace HIB
 {
-    [Activity(Label = "HIB", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "HIB Application", MainLauncher = true, Icon = "@drawable/icon")]
 
     public class MainActivity : Activity
     {
@@ -23,6 +24,7 @@ namespace HIB
 
 
             Button b = FindViewById<Button>(Resource.Id.button1);
+            Button routeHistoryButton = FindViewById<Button>(Resource.Id.routeHistoryButton);
             b.Click += async (sender, e) =>
             {
                 // thingspeak cloud service unique url 
@@ -33,6 +35,13 @@ namespace HIB
                 // parse the results, then update the screen:
                 JsonValue json = await FetchData(url);
                 ParseAndDisplay(json);
+            };
+
+            routeHistoryButton.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(Activity1));
+                //intent.PutStringArrayListExtra("phone_numbers", phoneNumbers);
+                StartActivity(intent);
             };
         }
 
@@ -54,7 +63,11 @@ namespace HIB
                     return jsonDoc;
                 }
             }
+
+          
         }
+
+
 
         private void ParseAndDisplay(JsonValue json)
         {
