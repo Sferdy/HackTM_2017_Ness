@@ -21,12 +21,16 @@ class ReqHdl(SocketServer.StreamRequestHandler):
     def handle(self):
         data = self.request.recv(1024)
         if 'Tx' in data:
-            with open(outFileName, 'w+') as outFile:
-                while data:
-                    outFile.write(data)
-                    spi_data.append(log2spi(data))
-                    self.request.send('OK')
-                    data = self.request.recv(1024)
+			while data:
+				self.request.send('OK')
+				sys.stdout.write(data)
+				data = self.recv(1024)
+           # with open(outFileName, 'w+') as outFile:
+           #     while data:
+           #         outFile.write(data)
+           #         spi_data.append(log2spi(data))
+           #         self.request.send('OK')
+           #         data = self.request.recv(1024)
 
         # while data:
         #     print "Server received: ", data
@@ -64,11 +68,13 @@ def server_run(server_address):
     server.serve_forever()
 
 if __name__ == '__main__':
-    server_thr = threading.Thread(target=server_run, args=(SERVER_ADDR,))
-    client_thr = threading.Thread(target=client_run, args=(SERVER_ADDR,))
+#    server_thr = threading.Thread(target=server_run, args=(SERVER_ADDR,))
+#    client_thr = threading.Thread(target=client_run, args=(SERVER_ADDR,))
 
-    server_thr.start()
-    client_thr.start()
+#    server_thr.start()
+#    client_thr.start()
+
+	server_run()
 
 
 
