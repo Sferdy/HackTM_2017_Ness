@@ -1,6 +1,6 @@
 from os.path import dirname, abspath, join
 
-SERVER_IP = '127.0.0.1'
+SERVER_IP = '10.1.0.16'
 PORT = 9999
 
 SERVER_ADDR = (SERVER_IP, PORT)

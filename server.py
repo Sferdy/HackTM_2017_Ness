@@ -3,7 +3,6 @@ import threading
 import socket
 import sys
 from os.path import dirname, abspath, join
-import nmap
 from config import SERVER_ADDR
 from manip import log2spi
 
@@ -13,8 +12,8 @@ outFileName = join(dirname(abspath(__file__)), r'CANoe/HackTM2017_CANoe_Log/outF
 spi_data = []
 
 
-def find_host_with_mac_address(mac_addr):
-    nm = nmap.PortScanner()
+# def find_host_with_mac_address(mac_addr):
+#     nm = nmap.PortScanner()
 
 class ReqHdl(SocketServer.StreamRequestHandler):
 
@@ -42,7 +41,7 @@ def client_run(server_address):
     with open(inFileName, 'r') as inFile:
         for line in inFile:
             target.sendall(line)
-            print "Client sent: ", line
+            print("Client sent: ", line)
             response = target.recv(1024)
             if response == 'OK': pass
             else: break
