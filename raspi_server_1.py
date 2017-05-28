@@ -27,10 +27,13 @@ def server_run(server_address):
     server.daemon_threads = False
     server.allow_reuse_address = True
     server.request_queue_size = 1
+    try:
+        server.server_bind()
+        server.server_activate()
+        server.serve_forever()
+    finally:
+        server.server_close()
 
-    server.server_bind()
-    server.server_activate()
-    server.serve_forever()
 
 if __name__ == '__main__':
     server_run(SERV_ADDR)
