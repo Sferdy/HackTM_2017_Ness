@@ -1,6 +1,24 @@
 <?xml version="1.0"?>
 <Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null">
   <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="CarSim">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text 6">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">36, 13</Property>
+      <Property Name="Location">485, 284</Property>
+      <Property Name="Text">Empty</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text 6">
+      <Property Name="Name">StaticTextControl7</Property>
+      <Property Name="Size">27, 13</Property>
+      <Property Name="Location">462, 197</Property>
+      <Property Name="Text">50%</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text 6">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">49, 13</Property>
+      <Property Name="Location">508, 130</Property>
+      <Property Name="Text">100% full</Property>
+    </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text 5">
       <Property Name="Name">StaticTextControl5</Property>
       <Property Name="Size">44, 13</Property>
@@ -52,7 +70,7 @@
       <Property Name="Size">225, 180</Property>
       <Property Name="Location">508, 130</Property>
       <Property Name="ScaleMax">256</Property>
-      <Property Name="SymbolConfiguration">4;1;HTM2017;;;env_Fuel_lvl;1;;;-1</Property>
+      <Property Name="SymbolConfiguration">4;2;HTM2017;Engine;Eng_Status;Eng_Fuel_Level;1;CAN;;-1</Property>
     </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.125.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Button">
       <Property Name="Name">ButtonControl1</Property>

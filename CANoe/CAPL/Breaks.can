@@ -6,6 +6,8 @@ includes
 
 variables
 {
+  byte breaking =0;
+  byte breakled =0;
   message Br_Status mBr_Status;
   
   msTimer tBr_Status;
@@ -21,3 +23,18 @@ on timer tBr_Status
   setTimer(tBr_Status,300);
   output(mBr_Status);
 }
+
+on envVar env_Breaking_Ped
+{
+  breaking = @this;
+  if(@this != 0)
+  {
+    breakled = 1;
+  }
+  else
+  {
+    breakled = 0;
+  }
+  mBr_Status.Br_active = breakled;
+}
+
