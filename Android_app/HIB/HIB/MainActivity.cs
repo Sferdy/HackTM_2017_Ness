@@ -30,7 +30,7 @@ namespace HIB
             {
                 // thingspeak cloud service unique url 
                 // todo for current id
-                string url = "https://api.thingspeak.com/channels/279003/feeds.json?api_key=4XS8082J7CIYESE7";
+                string url = "https://api.thingspeak.com/channels/279003/feeds.json?api_key=4XS8082J7CIYESE7&results=10";
 
                 // Fetch the weather information asynchronously, 
                 // parse the results, then update the screen:
