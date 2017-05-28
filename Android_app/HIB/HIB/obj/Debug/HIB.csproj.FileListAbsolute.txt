@@ -1,0 +1,15 @@
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\bin\Debug\HIB.dll
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\bin\Debug\HIB.pdb
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\bin\Debug\HIB.HIB.apk
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\bin\Debug\HIB.HIB-Signed.apk
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\HIB.csprojResolveAssemblyReference.cache
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\HIB.dll
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\HIB.pdb
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\android\bin\HIB.HIB.apk
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\res\layout\main.xml
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\res\values\strings.xml
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\res\drawable\icon.png
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\R.cs.flag
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\uploadflags.txt
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\bin\Debug\HIB.dll.mdb
+C:\Users\Pc\Documents\HackTM_2017_Ness\Android_app\HIB\HIB\obj\Debug\android\assets\HIB.dll.mdb
