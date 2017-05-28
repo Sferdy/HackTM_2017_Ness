@@ -1,0 +1,4 @@
+HIB.MainActivity, HIB;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity
+HIB.MainActivity, HIB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity
+HIB.MainActivity;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity
+hib.MainActivity;md5f24e4e9092dcdb043b2e44f68b4927a5.MainActivity
